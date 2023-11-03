@@ -12,16 +12,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form">
-                    <input class="form-control w-100 my-2" type="text" id="productName" placeholder="Product Name">
-                    <input class="form-control w-100 my-2" type="number" id="productCost" placeholder="Cost Price">
-                    <input class="form-control w-100 my-2" type="number" id="productRetail" placeholder="Retail Price">
-                    <input class="form-control w-100 my-2" type="number" id="productQuantity" placeholder="Quantity">
-                    <button class="btn btn-primary my-2" onclick="addProduct()">Add Product</button>
+                    <input class="form-control w-100 p-5 my-2" type="text" id="productName" placeholder="Product Name">
+                    <input class="form-control w-100 p-5 my-2" type="number" id="productCost" placeholder="Cost Price">
+                    <input class="form-control w-100 p-5 my-2" type="number" id="productRetail" placeholder="Retail Price">
+                    <input class="form-control w-100 p-5 my-2" type="number" id="productQuantity" placeholder="Quantity">
+                    <button class="btn btn-primary my-2 p-5" onclick="addProduct()">Add Product</button>
                 </div>
 
                 <div class="search-form">
-                    <input type="text" id="searchInput" placeholder="Search Product">
-                    <button class="btn btn-primary" onclick="searchProduct()">Search</button>
+                    <input class="form-control w-100 p-5 my-2" type="text" id="searchInput" placeholder="Search Product">
+                    <button class="btn btn-primary p-5 " onclick="searchProduct()">Search</button>
                 </div>
 
                 <div class="product-list" id="productList">
@@ -74,7 +74,7 @@
             <p>Quantity: ${product.quantity}</p>
             <p>Total Cost Price: $${product.cost * product.quantity}</p>
             <p>Total Retail Price: $${product.retail * product.quantity}
-            <button  class="btn btn-primary " onclick="editProduct(${index})">Edit</button>
+            <button  class="btn btn-primary p-5" onclick="editProduct(${index})">Edit</button>
             `;
             productListContainer.appendChild(productItem);
         });
