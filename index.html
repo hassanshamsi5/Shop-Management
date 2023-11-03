@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shop Management</title>
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <h1>Shop Management</h1>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form">
+                    <input class="form-control w-100 my-2" type="text" id="productName" placeholder="Product Name">
+                    <input class="form-control w-100 my-2" type="number" id="productCost" placeholder="Cost Price">
+                    <input class="form-control w-100 my-2" type="number" id="productRetail" placeholder="Retail Price">
+                    <input class="form-control w-100 my-2" type="number" id="productQuantity" placeholder="Quantity">
+                    <button class="btn btn-primary my-2" onclick="addProduct()">Add Product</button>
+                </div>
+
+                <div class="search-form">
+                    <input type="text" id="searchInput" placeholder="Search Product">
+                    <button class="btn btn-primary" onclick="searchProduct()">Search</button>
+                </div>
+
+                <div class="product-list" id="productList">
+                </div>
+
+                <div class="search-results" id="searchResults">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // Initialize the product list from local storage or create an empty array
+        let productList = JSON.parse(localStorage.getItem("productList")) || [];
+
+        function updateLocalStorage() {
+            localStorage.setItem("productList", JSON.stringify(productList));
+        }
+
+        function addProduct() {
+            const productName = document.getElementById("productName").value;
+            const productCost = parseFloat(document.getElementById("productCost").value);
+            const productRetail = parseFloat(document.getElementById("productRetail").value);
+            const productQuantity = parseInt(document.getElementById("productQuantity").value);
+
+            if (productName && !isNaN(productCost) && !isNaN(productRetail) && !isNaN(productQuantity)) {
+                const product = {
+                    name: productName,
+                    cost: productCost,
+                    retail: productRetail,
+                    quantity: productQuantity
+                };
+                productList.push(product);
+                updateLocalStorage();
+                displayProductList();
+            }
+        }
+
+        function displayProductList() {
+            const productListContainer = document.getElementById("productList");
+            productListContainer.innerHTML = "";
+
+            productList.forEach((product, index) => {
+                const productItem = document.createElement("div");
+                productItem.innerHTML = `
+            <p>${product.name}</p>
+            <p>Cost Price: $${product.cost}</p>
+            <p>Retail Price: $${product.retail}</p>
+            <p>Quantity: ${product.quantity}</p>
+            <p>Total Cost Price: $${product.cost * product.quantity}</p>
+            <p>Total Retail Price: $${product.retail * product.quantity}
+            <button  class="btn btn-primary " onclick="editProduct(${index})">Edit</button>
+            `;
+            productListContainer.appendChild(productItem);
+        });
+    }
+    // <button  class="btn btn-primary " onclick="removeProduct(${index})">Remove</button>
+
+        function editProduct(index) {
+            const newCost = parseFloat(prompt("Enter new cost price:"));
+            const newRetail = parseFloat(prompt("Enter new retail price:"));
+
+            if (!isNaN(newCost) && !isNaN(newRetail)) {
+                productList[index].cost = newCost;
+                productList[index].retail = newRetail;
+                updateLocalStorage();
+                displayProductList();
+            }
+        }
+
+        function removeProduct(index) {
+            productList.splice(index, 1);
+            updateLocalStorage();
+            displayProductList();
+        }
+
+        function searchProduct() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const searchResults = productList.filter(product => {
+                return product.name.toLowerCase().includes(searchInput);
+            });
+
+            const searchResultsContainer = document.getElementById("searchResults");
+            searchResultsContainer.innerHTML = "";
+
+            if (searchResults.length > 0) {
+                searchResults.forEach(product => {
+                    const productItem = document.createElement("div");
+                    productItem.innerHTML = `
+                <p>${product.name}</p>
+                <p>Cost Price: $${product.cost}</p>
+                <p>Retail Price: $${product.retail}</p>
+                <p>Quantity: ${product.quantity}</p>
+                <p>Total Cost Price: $${product.cost * product.quantity}</p>
+                <p>Total Retail Price: $${product.retail * product.quantity}
+            `;
+                    searchResultsContainer.appendChild(productItem);
+                });
+            } else {
+                searchResultsContainer.innerHTML = "<p>No products found.</p>";
+            }
+        }
+
+        displayProductList();
+
+    </script>
+    <script src="../assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
