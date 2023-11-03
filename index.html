@@ -14,13 +14,16 @@
                 <div class="form">
                     <input class="form-control w-100 p-5 my-2" type="text" id="productName" placeholder="Product Name">
                     <input class="form-control w-100 p-5 my-2" type="number" id="productCost" placeholder="Cost Price">
-                    <input class="form-control w-100 p-5 my-2" type="number" id="productRetail" placeholder="Retail Price">
-                    <input class="form-control w-100 p-5 my-2" type="number" id="productQuantity" placeholder="Quantity">
+                    <input class="form-control w-100 p-5 my-2" type="number" id="productRetail"
+                        placeholder="Retail Price">
+                    <input class="form-control w-100 p-5 my-2" type="number" id="productQuantity"
+                        placeholder="Quantity">
                     <button class="btn btn-primary my-2 p-5" onclick="addProduct()">Add Product</button>
                 </div>
 
                 <div class="search-form">
-                    <input class="form-control w-100 p-5 my-2" type="text" id="searchInput" placeholder="Search Product">
+                    <input class="form-control w-100 p-5 my-2" type="text" id="searchInput"
+                        placeholder="Search Product">
                     <button class="btn btn-primary p-5 " onclick="searchProduct()">Search</button>
                 </div>
 
@@ -58,6 +61,7 @@
                 productList.push(product);
                 updateLocalStorage();
                 displayProductList();
+                location.reload();
             }
         }
 
@@ -76,10 +80,10 @@
             <p>Total Retail Price: $${product.retail * product.quantity}
             <button  class="btn btn-primary p-5" onclick="editProduct(${index})">Edit</button>
             `;
-            productListContainer.appendChild(productItem);
-        });
-    }
-    // <button  class="btn btn-primary " onclick="removeProduct(${index})">Remove</button>
+                productListContainer.appendChild(productItem);
+            });
+        }
+        // <button  class="btn btn-primary " onclick="removeProduct(${index})">Remove</button>
 
         function editProduct(index) {
             const newCost = parseFloat(prompt("Enter new cost price:"));
