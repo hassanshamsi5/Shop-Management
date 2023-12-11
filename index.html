@@ -23,7 +23,7 @@
             </div>
 
             <div class="search-form">
-                <input class="form-control w-100 p-5 my-2" type="text" id="searchInput" placeholder="Search Product">
+                <input class="form-control w-100 p-5 my-2" onkeyup="searchProduct()" type="text" id="searchInput" placeholder="Search Product">
                 <button class="btn btn-primary p-5 " onclick="searchProduct()">Search</button>
             </div>
             <div class="container">
@@ -112,7 +112,6 @@
             }
         }
 
-   
         function searchProduct() {
             const searchInput = document.getElementById("searchInput");
             searchInput.addEventListener('keyup', function () {
@@ -129,6 +128,7 @@
                 });
             });
         }
+
 
         displayProductList();
 
