@@ -28,7 +28,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <div class="product-list" id="productList">
                         </div>
                     </div>
@@ -83,11 +83,11 @@
             <p>Total Cost Price: $${product.cost * product.quantity}</p>
             <p>Total Retail Price: $${product.retail * product.quantity}
             <button  class="btn btn-primary p-5" onclick="editProduct(${index})">Edit</button>
+            <button  class="btn btn-primary p-5 " onclick="removeProduct(${index})">Remove</button>
             `;
                 productListContainer.appendChild(productItem);
             });
         }
-        // <button  class="btn btn-primary " onclick="removeProduct(${index})">Remove</button>
 
         function editProduct(index) {
             const newCost = parseFloat(prompt("Enter new cost price:"));
