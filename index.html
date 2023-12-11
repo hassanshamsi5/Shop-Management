@@ -112,38 +112,7 @@
             }
         }
 
-        // function removeProduct(index) {
-        //     productList.splice(index, 1);
-        //     updateLocalStorage();
-        //     displayProductList();
-        // }
-
-        // function searchProduct() {
-        //     const searchInput = document.getElementById("searchInput").value.toLowerCase();
-        //     const searchResults = productList.filter(product => {
-        //         return product.name.toLowerCase().includes(searchInput);
-        //     });
-
-        //     const searchResultsContainer = document.getElementById("searchResults");
-        //     searchResultsContainer.innerHTML = "";
-
-        //     if (searchResults.length > 0) {
-        //         searchResults.forEach(product => {
-        //             const productItem = document.createElement("div");
-        //             productItem.innerHTML = `
-        //         <p>${product.name}</p>
-        //         <p>Cost Price: $${product.cost}</p>
-        //         <p>Retail Price: $${product.retail}</p>
-        //         <p>Quantity: ${product.quantity}</p>
-        //         <p>Total Cost Price: $${product.cost * product.quantity}</p>
-        //         <p>Total Retail Price: $${product.retail * product.quantity}
-        //     `;
-        //             searchResultsContainer.appendChild(productItem);
-        //         });
-        //     } else {
-        //         searchResultsContainer.innerHTML = "<p>No products found.</p>";
-        //     }   
-        // }
+   
         function searchProduct() {
             const searchInput = document.getElementById("searchInput");
             searchInput.addEventListener('keyup', function () {
